@@ -9,14 +9,14 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <icon>images\icon.png</icon>
     <description>Description</description>
-    <copyright>Copyright ©  2020</copyright>
+    <copyright>Copyright © 2020</copyright>
     <dependencies>
       <dependency id="Zafiro.Core" version="2.2.15" />
     </dependencies>
   </metadata>
   <files>
-    <file src="bin\Debug\Markdown.Xaml.dll" target="lib\net472\Markdown.Xaml.dll" />
-    <file src="bin\Debug\Zafiro.Wpf.dll" target="lib\net472\Zafiro.Wpf.dll" />
+    <file src="bin\Release\Markdown.Xaml.dll" target="lib\net472\Markdown.Xaml.dll" />
+    <file src="bin\Release\Zafiro.Wpf.dll" target="lib\net472\Zafiro.Wpf.dll" />
     <file src="..\..\icon.png" target="images\" />
   </files>
 </package>
