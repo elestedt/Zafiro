@@ -27,12 +27,12 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: 'Source\Zafiro.Wpf\Zafiro.Wpf.csproj'
+    restoreSolution: 'Source\Zafiro.sln'
 
 - task: VSBuild@1
   displayName: Build Zafiro.Wpf
   inputs:
-    solution: 'Source\Zafiro.Wpf\Zafiro.Wpf.csproj'    
+    solution: 'Source\Zafiro.sln'    
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
