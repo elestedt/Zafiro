@@ -45,6 +45,7 @@ steps:
     versionEnvVar: 'NugetVersion'
 
 - task: DotNetCoreCLI@2
+  displayName: Create .NET Standard Packages with .NET Core (dotnet)
   inputs:
     command: 'pack'
     packagesToPack: '$(projects)'
@@ -52,6 +53,7 @@ steps:
     versionEnvVar: 'NugetVersion'
 
 - task: NuGetCommand@2
+  displayName: Publish NuGet packages
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
