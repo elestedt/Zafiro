@@ -19,32 +19,32 @@ variables:
   patch: $[counter(variables['minor'], 0)] #this will reset when we bump minor
   NugetVersion: $(major).$(minor).$(patch)
 
-  stages:
-    - stage: wpf
-      displayName: WPF
-      jobs:
-      - job: Build
-        steps:
-          - checkout: self
-            submodules: recursive
-        
-          - task: NuGetToolInstaller@1
-        
-          - task: NuGetCommand@2
-            inputs:
+stages:
+  - stage: wpf
+    displayName: WPF
+    jobs:
+    - job: Build
+      steps:
+        - checkout: self
+          submodules: recursive
+      
+        - task: NuGetToolInstaller@1
+      
+        - task: NuGetCommand@2
+          inputs:
             restoreSolution: 'Source\Zafiro.sln'
+      
+        - task: VSBuild@1
+          displayName: Build Zafiro.Wpf
+          inputs:
+            solution: 'Source\Zafiro.sln'    
+            platform: '$(buildPlatform)'
+            configuration: '$(buildConfiguration)'
         
-          - task: VSBuild@1
-            displayName: Build Zafiro.Wpf
-            inputs:
-              solution: 'Source\Zafiro.sln'    
-              platform: '$(buildPlatform)'
-              configuration: '$(buildConfiguration)'
-          
-          - task: NuGetCommand@2
-            displayName: Create Zafiro.Wpf Package
-            inputs:
-              command: 'pack'
-              packagesToPack: 'Source\Zafiro.Wpf\Zafiro.Wpf.nuspec'
-              versioningScheme: 'byEnvVar'
-              versionEnvVar: 'NugetVersion'
+        - task: NuGetCommand@2
+          displayName: Create Zafiro.Wpf Package
+          inputs:
+            command: 'pack'
+            packagesToPack: 'Source\Zafiro.Wpf\Zafiro.Wpf.nuspec'
+            versioningScheme: 'byEnvVar'
+            versionEnvVar: 'NugetVersion'
