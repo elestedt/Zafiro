@@ -47,6 +47,7 @@ stages:
             versioningScheme: 'byEnvVar'
             versionEnvVar: 'NugetVersion'
         - task: NuGetCommand@2
+          displayName: Publish packages
           inputs:
             command: 'push'
             packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
@@ -65,3 +66,11 @@ stages:
           packagesToPack: 'Source\Zafiro.Core\Zafiro.Core.csproj;Source\Zafiro.Avalonia\Zafiro.Avalonia.csproj;Source\Zafiro.Avalonia.Design\Zafiro.Avalonia.Design.csproj'          
           versioningScheme: 'byEnvVar'
           versionEnvVar: 'NugetVersion'
+
+      - task: DotNetCoreCLI@2
+        displayName: Publish packages
+        inputs:
+          command: 'push'
+          packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+          nuGetFeedType: 'external'
+          publishFeedCredentials: 'Nuget'
